@@ -69,7 +69,7 @@ void loop()
         PORTD ^= (-((buf[0]>>CAN_5)&BIT_1_MASK)^PORTD)&(1U<<PD2); //Starter
         PORTD ^= (-((buf[0]>>CAN_6)&BIT_1_MASK)^PORTD)&(1U<<PD5); //Shift UP
         PORTD ^= (-((buf[0]>>CAN_7)&BIT_1_MASK)^PORTD)&(1U<<PD6); //Shift DOWN        
-        PORTD ^= (-((buf[1]>>CAN_0)&BIT_1_MASK)^PORTD)&(1U<<PD4); //Clutch Fill
+        PORTD ^= (-((buf[1]>>CAN_0)&BIT_1_MASK)^PORTD)&(1U<<PD3); //Clutch Fill
         PORTC ^= (-((buf[1]>>CAN_1)&BIT_1_MASK)^PORTC)&(1U<<PC3); //CBRB
         PORTC ^= (-((buf[1]>>CAN_2)&BIT_1_MASK)^PORTC)&(1U<<PC4); //RBRB
 
