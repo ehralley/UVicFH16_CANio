@@ -29,7 +29,7 @@ MCP_CAN CAN(SPI_CS_PIN);
 void setup()
 {
   Serial.begin(115200);
-  Timer1.initialize(40);  // 40 us = 25 kHz
+  Timer1.initialize(1000);  // 1000 us = 1 kHz
 
 
   DDRB |= 0b00000001; //PB0 is output (PB1 is PWM set up seperately) 
