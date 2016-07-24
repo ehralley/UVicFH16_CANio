@@ -29,7 +29,7 @@ MCP_CAN CAN(SPI_CS_PIN);
 void setup()
 {
   Serial.begin(115200);
-  Timer1.initialize(40);  // 40 us = 25 kHz
+  Timer1.initialize(2000);  // 2000 us = 500 Hz
 
 
   DDRB |= 0b00000001; //PB0 is output (PB1 is PWM set up seperately) 
@@ -59,7 +59,11 @@ void loop()
         //Deal with IO (In order of CAN message location)  
         PORTC ^= (-((buf[0]>>CAN_0)&BIT_1_MASK)^PORTC)&(1U<<PC1); //Brake Light
         PORTC ^= (-((buf[0]>>CAN_1)&BIT_1_MASK)^PORTC)&(1U<<PC5); //FP
-        PORTB ^= (-((buf[0]>>CAN_2)&BIT_1_MASK)^PORTB)&(1U<<PB0); //MS
+        
+        //PORTB ^= (-((buf[0]>>CAN_2)&BIT_1_MASK)^PORTB)&(1U<<PB0); //MS
+        //TEMPORARY DEBUG - Hardwire MS ON
+        PORTB |= 1U<<PB0;
+        
         PORTC ^= (-((buf[0]>>CAN_3)&BIT_1_MASK)^PORTC)&(1U<<PC0); //RTD
         PORTD ^= (-((buf[0]>>CAN_4)&BIT_1_MASK)^PORTD)&(1U<<PD7); //Spare 1
         PORTD ^= (-((buf[0]>>CAN_5)&BIT_1_MASK)^PORTD)&(1U<<PD2); //Starter
